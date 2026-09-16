@@ -1,66 +1,29 @@
-# Neworkwalks.BO83B-Week1-Cybersecurity-Internshi
-# 🔐 Cybersecurity Lab Environment
+# NETWORKWALKS B083B Week 1 - Cybersecurity Internship
 
-### Kali Linux + VirtualBox | Isolated Cybersecurity Testing Laboratory
+## Lab: Kali Linux Network Setup (PM1)
 
-![Kali Linux](https://img.shields.io/badge/OS-Kali%20Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
-![VirtualBox](https://img.shields.io/badge/VirtualBox-Virtual%20Lab-183A61?style=for-the-badge&logo=virtualbox&logoColor=white)
-![Cybersecurity](https://img.shields.io/badge/Focus-Cybersecurity-red?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+*Official Architecture Verified ✅*
+- Network Name: NatNetwork
+- Subnet: 10.0.0.0/24
+- Gateway: 10.0.0.1
+- Kali IP: 10.0.0.2/24
+- DNS: 8.8.8.8
+- Snapshot: Baseline_Week1_Clean
 
----
+### Steps Completed
 
-## 📌 Project Overview
+*1. VirtualBox NAT Network Creation*
+File > Tools > Network Manager > NAT Networks > Create
+- Name: NatNetwork
+- CIDR: 10.0.0.0/24
+- Gateway: 10.0.0.1
+- DHCP: Enabled
 
-This project documents the creation and configuration of an isolated cybersecurity laboratory using **Kali Linux** and **Oracle VirtualBox**.
+*2. Kali Adapter Config*
+Settings > Network > Adapter 1 > Attached to: NAT Network > NatNetwork
 
-The purpose of this laboratory is to provide a controlled environment for learning and practising cybersecurity concepts, network security, reconnaissance, vulnerability assessment, digital investigation techniques, and security-tool usage.
-
-The virtual environment is designed so that cybersecurity activities can be performed safely without directly affecting production systems or unauthorized networks.
-
----
-
-## 🎯 Project Objectives
-
-The main objectives of this project are:
-
-- 🖥️ Install and configure Oracle VirtualBox.
-- 🐉 Install and configure Kali Linux as a virtual machine.
-- 🌐 Configure virtual networking.
-- 🔒 Create an isolated cybersecurity testing environment.
-- 📡 Test network connectivity between virtual machines.
-- 🔎 Practise network reconnaissance and security testing.
-- 🛠️ Familiarize myself with Kali Linux cybersecurity tools.
-- 📸 Document the laboratory configuration and testing process.
-- 🔄 Create a clean snapshot for recovery and future experiments.
-- 📚 Build a foundation for future cybersecurity projects.
-
----
-
-## 🏗️ Laboratory Architecture
-
-The laboratory consists of a host computer running VirtualBox with Kali Linux operating as a virtual machine.
-
-### Basic Architecture
-
-```text
-                    ┌─────────────────────────┐
-                    │       HOST COMPUTER     │
-                    │                         │
-                    │      Windows / Host OS  │
-                    │                         │
-                    │       VirtualBox        │
-                    └────────────┬────────────┘
-                                 │
-                                 │ Virtual Network
-                                 │
-                    ┌────────────▼────────────┐
-                    │       KALI LINUX        │
-                    │                         │
-                    │  Cybersecurity Tools    │
-                    │  Nmap                   │
-                    │  Wireshark              │
-                    │  Burp Suite              │
-                    │  Metasploit             │
-                    │  Other Security Tools   │
-                    └─────────────────────────┘
+*3. Static IP Configuration*
+```bash
+sudo nmcli connection modify "Wired connection 1" ipv4.addresses 10.0.0.2/24 ipv4.gateway 10.0.0.1 ipv4.dns 8.8.8.8 ipv4.method manual
+sudo nmcli connection modify "Wired connection 1" ipv4.dad-timeout 0
+sudo nmcli connection down "Wired connection 1" && sudo nmcli connection up "Wired connection 1"
