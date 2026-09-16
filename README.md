@@ -1,6 +1,4 @@
-# Neworkwalks.BO83B-Week1-Cybersecurity-Internship
-Cybersecurity Lab Setup.
-My first day in Github.
+# Neworkwalks.BO83B-Week1-Cybersecurity-Internshi
 # 🔐 Cybersecurity Lab Environment
 
 ### Kali Linux + VirtualBox | Isolated Cybersecurity Testing Laboratory
